@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❄️ Aic | Цены на разработку</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ice-blue: #a0d2eb;
+            --deep-blue: #5d5fef;
+            --frost-purple: #8458eb;
+            --crystal-white: rgba(255, 255, 255, 0.15);
+            --dark-bg: #0e0e2e;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--frost-purple), var(--deep-blue));
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                transparent 0%, 
+                transparent 50%, 
+                var(--deep-blue) 50%, 
+                var(--deep-blue) 100%
+            );
+            opacity: 0.3;
+            z-index: -2;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(160, 210, 235, 0.3);
+            z-index: 100;
+            background: rgba(93, 95, 239, 0.2);
+            font-size: 0.95rem;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(160, 210, 235, 0.2) 0%, 
+                rgba(133, 88, 235, 0.4) 100%);
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .back-btn:hover::before {
+            background: linear-gradient(135deg, 
+                rgba(160, 210, 235, 0.3) 0%, 
+                rgba(133, 88, 235, 0.5) 100%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInDown 1s 0.3s forwards;
+        }
+
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0) }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--ice-blue);
+            text-shadow: 0 0 10px rgba(160, 210, 235, 0.7);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30%;
+            width: 40%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ice-blue), transparent);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .subtitle {
+            color: rgba(200, 220, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .pricing-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: rgba(14, 14, 46, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(160, 210, 235, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--crystal-white);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                var(--crystal-white) 50%,
+                transparent 55%
+            );
+            opacity: 0.1;
+            animation: shine 8s infinite linear;
+            z-index: 1;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(160, 210, 235, 0.2);
+        }
+
+        .pricing-title {
+            color: var(--ice-blue);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pricing-title svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--ice-blue);
+        }
+
+        .pricing-description {
+            color: rgba(200, 220, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: rgba(160, 210, 235, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ice-blue);
+            margin-bottom: 20px;
+            border: 1px solid rgba(160, 210, 235, 0.3);
+        }
+
+        .features-list {
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: rgba(200, 220, 255, 0.8);
+        }
+
+        .feature-item svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--ice-blue);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .payment-methods {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(160, 210, 235, 0.2);
+        }
+
+        .payment-title {
+            color: var(--ice-blue);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(160, 210, 235, 0.1);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(160, 210, 235, 0.2);
+        }
+
+        .payment-option svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-note {
+            margin-top: 50px;
+            text-align: center;
+            color: rgba(200, 220, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-link {
+            color: var(--ice-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            text-shadow: 0 0 10px var(--ice-blue);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 15px 0;
+            color: rgba(200, 220, 255, 0.6);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .ice-crystal {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.05;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px var(--ice-blue));
+        }
+
+        .ice-crystal:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .ice-crystal:nth-child(2) {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .ice-crystal:nth-child(3) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 4s;
+        }
+
+        .ice-crystal:nth-child(4) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg) }
+        }
+
+        @keyframes shine {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="ice-crystal">
+        <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+            <path d="M12 2L15 9H21L16 14L18 21L12 17L6 21L8 14L3 9H9L12 2Z"/>
+        </svg>
+    </div>
+    <div class="ice-crystal">
+        <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+            <path d="M12 2L15 9H21L16 14L18 21L12 17L6 21L8 14L3 9H9L12 2Z"/>
+        </svg>
+    </div>
+    <div class="ice-crystal">
+        <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+            <path d="M12 2L15 9H21L16 14L18 21L12 17L6 21L8 14L3 9H9L12 2Z"/>
+        </svg>
+    </div>
+    <div class="ice-crystal">
+        <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+            <path d="M12 2L15 9H21L16 14L18 21L12 17L6 21L8 14L3 9H9L12 2Z"/>
+        </svg>
+    </div>
+
+    <a href="index.html" class="back-btn">← Назад</a>
+
+    <div class="container">
+        <div class="header">
+            <h1>Цены на разработку</h1>
+            <div class="subtitle">
+                Прозрачное ценообразование для Telegram ботов и утилит. 
+                Каждый проект индивидуален - окончательная стоимость обсуждается отдельно.
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-title">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"/>
+                    </svg>
+                    Базовый пакет
+                </h3>
+                <div class="price-tag">от $50</div>
+                <div class="pricing-description">
+                    Готовый рабочий код Telegram бота или утилиты без дальнейшей поддержки и обновлений.
+                </div>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        <span>Полностью рабочий код</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        <span>Базовая документация</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        <span>Тестирование перед передачей</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                        </svg>
+                        <span>Без дальнейших обновлений</span>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <div class="payment-title">Способы оплаты:</div>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+                                <path d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9M1,10H3V20H19V22H1V10Z"/>
+                            </svg>
+                            USDT (Crypto)
+                        </div>
+                        <div class="payment-option">
+                            <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z"/>
+                            </svg>
+                            Telegram Stars
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-card">
+                <h3 class="pricing-title">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                    </svg>
+                    Пакет с поддержкой
+                </h3>
+                <div class="price-tag">от $100</div>
+                <div class="pricing-description">
+                    Полноценная разработка с дальнейшими обновлениями и технической поддержкой.
+                </div>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        <span>Все из базового пакета</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        <span>2 месяца технической поддержки</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        <span>2 бесплатных обновления</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+                        </svg>
+                        <span>Приоритетное обслуживание</span>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <div class="payment-title">Способы оплаты:</div>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+                                <path d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9M1,10H3V20H19V22H1V10Z"/>
+                            </svg>
+                            USDT (Crypto)
+                        </div>
+                        <div class="payment-option">
+                            <svg viewBox="0 0 24 24" fill="var(--ice-blue)">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z"/>
+                            </svg>
+                            Telegram Stars
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-note">
+            <p>Каждый проект уникален - точная стоимость рассчитывается индивидуально после обсуждения требований.</p>
+            <p>Для обсуждения вашего проекта свяжитесь со мной в <a href="https://t.me/q1234q56" class="contact-link">Telegram</a>.</p>
+        </div>
+
+        <footer>
+            © 2025 Aic Development | Все права защищены
+        </footer>
+    </div>
+</body>
+  </html>
